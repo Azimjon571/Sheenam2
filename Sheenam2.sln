@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheenam2.API", "Sheenam2.AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheenam2.Api.Tests.Unit", "Sheenam2.Api.Tests.Unit\Sheenam2.Api.Tests.Unit.csproj", "{3D6DE606-A0B9-4ABC-A9D7-71909C2E9473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheenam2.API.Infrastucture.Build", "Sheenam2.API.Infrastucture.Build\Sheenam2.API.Infrastucture.Build.csproj", "{26AF6C94-5C87-4713-9D03-1AF4032EA470}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheenam2.API.Infrastucture.Build", "Sheenam2.API.Infrastucture.Build\Sheenam2.API.Infrastucture.Build.csproj", "{26AF6C94-5C87-4713-9D03-1AF4032EA470}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14C86988-AE2B-4D6A-AF00-EF6819AE741C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
