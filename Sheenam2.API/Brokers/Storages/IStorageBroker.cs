@@ -7,5 +7,6 @@ namespace Sheenam2.API.Brokers.Storages
 {
     public partial interface IStorageBroker
     {
+
     }
 }

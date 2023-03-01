@@ -15,9 +15,9 @@ namespace Sheenam2.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)=>
+        public Startup(IConfiguration configuration) =>
             Configuration = configuration;
-        
+
 
         public IConfiguration Configuration { get; }
 
@@ -49,21 +49,21 @@ namespace Sheenam2.API
 
                 app.UseSwagger();
 
-                app.UseSwaggerUI(options=>
+                app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint(
                       url: "/swagger/v1/swagger.json",
                       name: "Sheenam2.API v1");
-                }); 
+                });
             }
 
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
                 endpoints.MapControllers());
-            
+
         }
     }
 }
