@@ -26,7 +26,7 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
 
         private static Guest CreateRandomGuest() =>
                             CreateGuestFiller(date: GetRandomDateTimeOffSet()).Create();
-      
+
         private static DateTimeOffset GetRandomDateTimeOffSet() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
 

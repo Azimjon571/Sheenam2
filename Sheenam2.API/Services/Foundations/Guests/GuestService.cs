@@ -3,7 +3,6 @@
 //Free To Use To Find Confort and Peace
 //=================================================
 
-using System;
 using System.Threading.Tasks;
 using Sheenam2.API.Brokers.Storages;
 using Sheenam2.API.Models.Foundation.Guests;
@@ -18,8 +17,8 @@ namespace Sheenam2.API.Services.Foundations.Guests
             this.storageBroker = storageBroker;
 
 
-        public ValueTask<Guest> AddGuestAsync(Guest guest) =>
-            throw new NotImplementedException();
+        public async ValueTask<Guest> AddGuestAsync(Guest guest) =>
+                await this.storageBroker.InsertGuestAsync(guest);
 
     }
 }
