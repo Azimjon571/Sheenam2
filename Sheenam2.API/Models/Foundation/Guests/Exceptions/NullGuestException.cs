@@ -5,7 +5,7 @@
 
 using Xeptions;
 
-namespace Sheenam2.API.Services.Foundations.Guests.Exceptions
+namespace Sheenam2.API.Models.Foundation.Guests.Exceptions
 {
     public class NullGuestException : Xeption
     {
