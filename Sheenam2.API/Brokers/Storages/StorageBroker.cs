@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Sheenam2.API.Brokers.Storages
 {
-    
+
     public partial class StorageBroker : EFxceptionsContext, IStorageBroker
     {
         private readonly IConfiguration configuration;
@@ -28,8 +28,8 @@ namespace Sheenam2.API.Brokers.Storages
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public override void Dispose(){ }
-        
+        public override void Dispose() { }
+
 
     }
 }

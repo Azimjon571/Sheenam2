@@ -3,10 +3,14 @@
 //Free To Use To Find Confort and Peace
 //=================================================
 
-namespace Sheenam2.API.Brokers.Storages
-{
-    public partial interface IStorageBroker
-    {
+using Xeptions;
 
+namespace Sheenam2.API.Models.Foundation.Guests.Exceptions
+{
+    public class NullGuestException : Xeption
+    {
+        public NullGuestException()
+            : base(message: "Guest is null")
+        { }
     }
 }

@@ -3,10 +3,13 @@
 //Free To Use To Find Confort and Peace
 //=================================================
 
-namespace Sheenam2.API.Brokers.Storages
-{
-    public partial interface IStorageBroker
-    {
+using System;
 
+namespace Sheenam2.API.Brokers.Loggings
+{
+    public interface ILoggingBroker
+    {
+        void LogError(Exception exception);
+        void LogCritical(Exception exception);
     }
 }
