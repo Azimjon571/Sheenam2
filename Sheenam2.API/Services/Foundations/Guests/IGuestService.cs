@@ -6,7 +6,7 @@
 using System.Threading.Tasks;
 using Sheenam2.API.Models.Foundation.Guests;
 
-namespace Sheenam2.API.Services.Foundations.Guests
+namespace Sheenam2.API.Models.Foundations.Guests
 {
     public interface IGuestService
     {
