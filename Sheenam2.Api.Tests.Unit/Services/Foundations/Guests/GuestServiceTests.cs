@@ -6,7 +6,7 @@
 using Moq;
 using Sheenam2.API.Brokers.Storages;
 using Sheenam2.API.Models.Foundation.Guests;
-using Sheenam2.API.Models.Foundations.Guests;
+using Sheenam2.API.Services.Foundations.Guests;
 using Tynamix.ObjectFiller;
 
 namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests

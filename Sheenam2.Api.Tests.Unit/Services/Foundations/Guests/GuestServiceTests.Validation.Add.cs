@@ -5,7 +5,7 @@
 
 
 using Sheenam2.API.Models.Foundation.Guests;
-using Sheenam2.API.Models.Foundations.Guests.Exceptions;
+using Sheenam2.API.Services.Foundations.Guests.Exceptions;
 using Xunit;
 
 namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests

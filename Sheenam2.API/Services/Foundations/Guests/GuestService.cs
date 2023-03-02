@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Sheenam2.API.Brokers.Storages;
 using Sheenam2.API.Models.Foundation.Guests;
 
-namespace Sheenam2.API.Models.Foundations.Guests
+namespace Sheenam2.API.Services.Foundations.Guests
 {
     public class GuestService : IGuestService
     {
