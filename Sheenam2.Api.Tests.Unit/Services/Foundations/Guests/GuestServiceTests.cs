@@ -29,7 +29,7 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
 
         private static DateTimeOffset GetRandomDateTimeOffSet() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
-
+        
         private static Filler<Guest> CreateGuestFiller(DateTimeOffset date)
         {
             var filler = new Filler<Guest>();
