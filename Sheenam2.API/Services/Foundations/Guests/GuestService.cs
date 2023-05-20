@@ -29,7 +29,7 @@ namespace Sheenam2.API.Services.Foundations.Guests
         public ValueTask<Guest> AddGuestAsync(Guest guest) =>
         TryCatch(async () =>
         {
-            ValidateGuestNotnull(guest);
+            ValidateGuestOnAdd(guest);
 
             return await this.storageBroker.InsertGuestAsync(guest);
         });

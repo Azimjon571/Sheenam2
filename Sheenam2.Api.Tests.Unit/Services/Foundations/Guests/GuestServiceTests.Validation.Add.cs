@@ -46,7 +46,7 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public async Task ShouldThrowValidationExceptionOnAddIfGuestIsInvalidAndLogItAsync(
+        public async Task ShouldThrowValidationExseptionOnAddIfGuestIsInvalidAndLogItAsync(
             string invalidText)
         {
             //given
@@ -55,34 +55,35 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
                 FirstName = invalidText
             };
 
-            var invaligGuestException = new InvalidGuestException();
+            var invalidGuestException = new InvalidGuestException();
 
-            invaligGuestException.AddData(
+            invalidGuestException.AddData(
                 key: nameof(Guest.Id),
-                    values: "Id is required");
+                values: "Id is required");
 
-            invaligGuestException.AddData(
+            invalidGuestException.AddData(
                 key: nameof(Guest.FirstName),
-                    values: "Text is required");
+                values: "Text is required");
 
-            invaligGuestException.AddData(
+            invalidGuestException.AddData(
                 key: nameof(Guest.LastName),
-                    values: "Texr is required");
+                values: "Text is required");
 
-            invaligGuestException.AddData(
+            invalidGuestException.AddData(
                 key: nameof(Guest.DateOfBirth),
-                    values: "Date is required");
+                values: "Date is required");
 
-            invaligGuestException.AddData(
+            invalidGuestException.AddData(
                 key: nameof(Guest.Email),
-                    values: "Text is required");
+                values: "Text is required");
 
-            invaligGuestException.AddData(
+            invalidGuestException.AddData(
                 key: nameof(Guest.Address),
-                    values: "Text is required");
+                values: "Text is required");
 
             var expectedGuestValidationException =
-                new GuestValidationException(invaligGuestException);
+                new GuestValidationException(invalidGuestException);
+
             //when
             ValueTask<Guest> addGuestTask =
                 this.guestService.AddGuestAsync(invalidGuest);
@@ -92,12 +93,13 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
                 addGuestTask.AsTask());
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedGuestValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedGuestValidationException))),
+                        Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertGuestAsync(It.IsAny<Guest>()),
-                    Times.Once);
+                    Times.Never);
 
             this.loggingBrokerMock.VerifyNoOtherCalls();
             this.storageBrokerMock.VerifyNoOtherCalls();
