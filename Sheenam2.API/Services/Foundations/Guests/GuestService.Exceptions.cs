@@ -4,6 +4,7 @@
 //=================================================
 
 using System.Threading.Tasks;
+using EFxceptions.Models.Exceptions;
 using Microsoft.Data.SqlClient;
 using Sheenam2.API.Models.Foundation.Guests;
 using Sheenam2.API.Models.Foundation.Guests.Exceptions;
@@ -36,6 +37,14 @@ namespace Sheenam2.API.Services.Foundations.Guests
 
                 throw CreateAndLogCriticalDependencyException(failedGuestStorageException);
             }
+            catch (DuplicateKeyException duplicateKeyException)
+            {
+                var alreadyExistGuestException =
+                    new AlreadyExistGuestException(duplicateKeyException);
+
+                throw CreateAndLogDependencyValidationException(alreadyExistGuestException);
+            }
+
         }
 
         private GuestValidationException CreateAndLogValidationException(Xeption exeption)
@@ -56,6 +65,16 @@ namespace Sheenam2.API.Services.Foundations.Guests
             this.loggingBroker.LogCritical(guestDependencyException);
 
             return guestDependencyException;
+        }
+        private GuestDependencyValidationException CreateAndLogDependencyValidationException(
+            Xeption exception)
+        {
+            var guestDependencyValidationException =
+                new GuestDependencyValidationException(exception);
+
+            this.loggingBroker.LogError(guestDependencyValidationException);
+
+            return guestDependencyValidationException;
         }
 
     }
