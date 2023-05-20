@@ -22,7 +22,8 @@ namespace Sheenam2.API.Services.Foundations.Guests
                 (Rule: IsInvalid(guest.LastName), Parameter:nameof(Guest.LastName)),
                 (Rule: IsInvalid(guest.DateOfBirth), Parameter:nameof(Guest.DateOfBirth)),
                 (Rule: IsInvalid(guest.Email), Parameter:nameof(Guest.Email)),
-                (Rule: IsInvalid(guest.Address), Parameter:nameof(Guest.Address))
+                (Rule: IsInvalid(guest.Address), Parameter:nameof(Guest.Address)),
+                (Rule: IsInvalid(guest.Gender), Parameter:nameof(Guest.Gender))
                 );
         }
         private void ValidateGuestNotnull(Guest guest)
@@ -57,6 +58,7 @@ namespace Sheenam2.API.Services.Foundations.Guests
             Condition = date == default,
             Message = "Date is required"
         };
+
         private static void Validate(params (dynamic Rule, string Parameter)[] validations)
         {
             var invalidGuestException = new InvalidGuestException();
