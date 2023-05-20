@@ -18,7 +18,7 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
     {
         private readonly Mock<IStorageBroker> storageBrokerMock;
         private readonly Mock<ILoggingBroker> loggingBrokerMock;
-        
+
         private readonly IGuestService guestService;
 
         public GuestServiceTests()
@@ -37,7 +37,7 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
         private static DateTimeOffset GetRandomDateTimeOffSet() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
 
-        private Expression<Func<Xeption,bool>> SameExceptionAs(Xeption expectedException)
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
         {
             return actualException =>
                 actualException.Message == expectedException.Message

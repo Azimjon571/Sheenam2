@@ -7,10 +7,10 @@ using Xeptions;
 
 namespace Sheenam2.API.Models.Foundation.Guests.Exceptions
 {
-    public class InvalidGuestException:Xeption
+    public class InvalidGuestException : Xeption
     {
         public InvalidGuestException()
-            :base(message:"Guest is invalid")
-        {}
+            : base(message: "Guest is invalid")
+        { }
     }
 }
