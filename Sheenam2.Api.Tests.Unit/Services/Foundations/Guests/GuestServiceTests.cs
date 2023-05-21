@@ -6,7 +6,6 @@
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Moq;
 using Sheenam2.API.Brokers.Loggings;
 using Sheenam2.API.Brokers.Storages;
@@ -54,7 +53,7 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
         {
             int randomNumber = GetRandomNumber();
 
-            while (Enum.IsDefined(typeof(T), randomNumber)is true)
+            while (Enum.IsDefined(typeof(T), randomNumber) is true)
             {
                 randomNumber = GetRandomNumber();
             }

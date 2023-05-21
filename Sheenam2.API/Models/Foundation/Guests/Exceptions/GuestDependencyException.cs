@@ -7,11 +7,11 @@ using Xeptions;
 
 namespace Sheenam2.API.Models.Foundation.Guests.Exceptions
 {
-    public class GuestDependencyException: Xeption
+    public class GuestDependencyException : Xeption
     {
         public GuestDependencyException(Xeption innerException)
-            :base(message:"Guest dependency error occurd, contact support",
+            : base(message: "Guest dependency error occurd, contact support",
                  innerException)
-        {}
+        { }
     }
 }

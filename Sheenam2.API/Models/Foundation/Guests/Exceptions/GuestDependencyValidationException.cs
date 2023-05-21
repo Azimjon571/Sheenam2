@@ -10,7 +10,7 @@ namespace Sheenam2.API.Models.Foundation.Guests.Exceptions
     public class GuestDependencyValidationException : Xeption
     {
         public GuestDependencyValidationException(Xeption innerExeption)
-            :base(message:"Guest dependency error occurred, fix the errors and try again ",innerExeption)
-        {}
+            : base(message: "Guest dependency error occurred, fix the errors and try again ", innerExeption)
+        { }
     }
 }

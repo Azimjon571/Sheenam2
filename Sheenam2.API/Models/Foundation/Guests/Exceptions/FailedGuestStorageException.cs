@@ -8,10 +8,10 @@ using Xeptions;
 
 namespace Sheenam2.API.Models.Foundation.Guests.Exceptions
 {
-    public class FailedGuestStorageException:Xeption
+    public class FailedGuestStorageException : Xeption
     {
         public FailedGuestStorageException(Exception innerException)
-            :base(message:"Failed Guest storage error occurred, contact support",innerException)
-        {}
+            : base(message: "Failed Guest storage error occurred, contact support", innerException)
+        { }
     }
 }

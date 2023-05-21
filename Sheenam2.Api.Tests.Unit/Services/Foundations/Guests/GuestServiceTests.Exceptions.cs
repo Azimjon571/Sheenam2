@@ -6,10 +6,9 @@
 using EFxceptions.Models.Exceptions;
 using Microsoft.Data.SqlClient;
 using Moq;
-using Sheenam2.API.Models.Foundation.Guests;    
+using Sheenam2.API.Models.Foundation.Guests;
 using Sheenam2.API.Models.Foundation.Guests.Exceptions;
 using Xunit;
-using Xunit.Sdk;
 
 namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
 {
@@ -114,18 +113,18 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Guests
                 this.guestService.AddGuestAsync(someGuest);
 
             //then
-            await Assert.ThrowsAsync<GuestServiceException>(()=>
+            await Assert.ThrowsAsync<GuestServiceException>(() =>
                 addGuestTask.AsTask());
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertGuestAsync(someGuest),
                     Times.Once);
 
-            this.loggingBrokerMock.Verify(broker=>
+            this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
                     expectedGuestServiceException))),
                         Times.Once);
-            
+
             this.storageBrokerMock.VerifyNoOtherCalls();
             this.loggingBrokerMock.VerifyNoOtherCalls();
         }
