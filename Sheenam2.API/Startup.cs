@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Sheenam2.API.Brokers.Loggings;
 using Sheenam2.API.Brokers.Storages;
+using Sheenam2.API.Models.Foundations.Guests;
+using Sheenam2.API.Services.Foundations.Guests;
 
 namespace Sheenam2.API
 {
@@ -33,6 +35,7 @@ namespace Sheenam2.API
             services.AddDbContext<StorageBroker>();
             services.AddControllers();
             AddBrokers(services);
+            AddFoundationServices(services);
 
             services.AddSwaggerGen(option =>
             {
@@ -72,5 +75,10 @@ namespace Sheenam2.API
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ILoggingBroker, LoggingBroker>();
         }
+        private static void AddFoundationServices(IServiceCollection services)
+        {
+            services.AddTransient<IGuestService, GuestService>();
+        }
+
     }
 }
