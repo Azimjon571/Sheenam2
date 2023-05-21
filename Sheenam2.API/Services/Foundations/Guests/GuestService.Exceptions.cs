@@ -3,6 +3,7 @@
 //Free To Use To Find Confort and Peace
 //=================================================
 
+using System;
 using System.Threading.Tasks;
 using EFxceptions.Models.Exceptions;
 using Microsoft.Data.SqlClient;
@@ -44,7 +45,13 @@ namespace Sheenam2.API.Services.Foundations.Guests
 
                 throw CreateAndLogDependencyValidationException(alreadyExistGuestException);
             }
+            catch(Exception exception)
+            {
+                var failedGuestServiceException = 
+                    new FailedGuestServiceException(exception);
 
+                throw CreateAndLogGuestServiceException(failedGuestServiceException);
+            }
         }
 
         private GuestValidationException CreateAndLogValidationException(Xeption exeption)
@@ -66,6 +73,7 @@ namespace Sheenam2.API.Services.Foundations.Guests
 
             return guestDependencyException;
         }
+
         private GuestDependencyValidationException CreateAndLogDependencyValidationException(
             Xeption exception)
         {
@@ -77,5 +85,13 @@ namespace Sheenam2.API.Services.Foundations.Guests
             return guestDependencyValidationException;
         }
 
+        private GuestServiceException CreateAndLogGuestServiceException(Xeption exception)
+        {
+            var guestServiceException = new GuestServiceException(exception);
+
+            this.loggingBroker.LogError(guestServiceException);
+
+            return guestServiceException;
+        }
     }
 }
