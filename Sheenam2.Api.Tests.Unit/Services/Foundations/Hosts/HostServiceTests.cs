@@ -3,12 +3,14 @@
 //Free To Use To Find Confort and Peace
 //=================================================
 
+using System.Linq.Expressions;
 using Moq;
 using Sheenam2.API.Brokers.Loggings;
 using Sheenam2.API.Brokers.Storages;
 using Sheenam2.API.Models.Foundation.Hosts;
 using Sheenam2.API.Services.Foundations.Hosts;
 using Tynamix.ObjectFiller;
+using Xeptions;
 
 namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Hosts
 {
@@ -33,6 +35,9 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Hosts
 
         private static DateTimeOffset GetRandomDateTineOffSet() =>
             new DateTimeRange(earliestDate: new DateTime()).GetValue();
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
+           actualException => actualException.SameExceptionAs(expectedException);
+
         private static Filler<Host> CreateHostFiller(DateTimeOffset date)
         {
             var filler = new Filler<Host>();
