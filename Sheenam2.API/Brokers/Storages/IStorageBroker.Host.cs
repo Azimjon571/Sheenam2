@@ -4,18 +4,12 @@
 //=================================================
 
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Sheenam2.API.Models.Foundation.Hosts;
 
 namespace Sheenam2.API.Brokers.Storages
 {
-    public partial class StorageBroker
+    public partial interface IStorageBroker
     {
-        public DbSet<Host> Hosts { get; set; }
-
-        public async ValueTask<Host> InsertHostAsync(Host host)
-        {
-            
-        }
+        ValueTask<Host> InsertHostAsync(Host host);
     }
 }
