@@ -23,7 +23,7 @@ namespace Sheenam2.API.Services.Foundations.Hosts
             this.loggingBroker = loggingBroker;
         }
 
-        public ValueTask<Host> AddHostAsync(Host host)=>
-            throw new System.NotImplementedException();
+        public async ValueTask<Host> AddHostAsync(Host host) =>
+            await this.storageBroker.InsertHostAsync(host);
     }
 }
