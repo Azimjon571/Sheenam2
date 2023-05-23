@@ -3,12 +3,13 @@
 //Free To Use To Find Confort and Peace
 //=================================================
 
-namespace Sheenam2.API.Models.Foundation.Hosts
+using Microsoft.EntityFrameworkCore;
+using Sheenam2.API.Models.Foundation.Hosts;
+
+namespace Sheenam2.API.Brokers.Storages
 {
-    public enum GenderType
+    public partial class StorageBroker
     {
-        Male,
-        Female,
-        Other
+        public DbSet<Host> Hosts { get; set; }
     }
 }
