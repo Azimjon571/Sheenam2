@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Sheenam2.API.Brokers.Loggings;
 using Sheenam2.API.Brokers.Storages;
 using Sheenam2.API.Models.Foundation.Hosts;
+using Sheenam2.API.Models.Foundation.Hosts.Exceptions;
 
 namespace Sheenam2.API.Services.Foundations.Hosts
 {
@@ -23,7 +24,25 @@ namespace Sheenam2.API.Services.Foundations.Hosts
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<Host> AddHostAsync(Host host) =>
-            await this.storageBroker.InsertHostAsync(host);
+        public async ValueTask<Host> AddHostAsync(Host host)
+        {
+            try
+            {
+                if (host is null)
+                {
+                    throw new NullHostException();
+                }
+                return await this.storageBroker.InsertHostAsync(host);
+            }
+            catch (NullHostException nullHostException)
+            {
+                var hostValidationException1 = 
+                    new HostValidationException1(nullHostException);
+
+                this.loggingBroker.LogError(hostValidationException1);
+
+                throw hostValidationException1;
+            }
+        }
     }
 }
