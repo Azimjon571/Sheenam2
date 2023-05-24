@@ -24,11 +24,25 @@ namespace Sheenam2.API.Services.Foundations.Hosts
             {
                 throw CreateAndLogValidationException(nullHostException);
             }
+            catch(InvalidHostException invalidHostException)
+            {
+                throw CreateAndLogValidationException1(invalidHostException);
+            }
         }
         private HostValidationException1 CreateAndLogValidationException(Xeption exception)
         {
             var hostValidationException1 =
                     new HostValidationException1(exception);
+
+            this.loggingBroker.LogError(hostValidationException1);
+
+            return hostValidationException1;
+        }
+
+        private HostValidationException1 CreateAndLogValidationException1(Xeption exception)
+        {
+            var hostValidationException1 =
+                new HostValidationException1(exception);
 
             this.loggingBroker.LogError(hostValidationException1);
 

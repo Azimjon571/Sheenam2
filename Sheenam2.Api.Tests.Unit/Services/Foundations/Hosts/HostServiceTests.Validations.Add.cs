@@ -5,6 +5,8 @@
 
 
 using Moq;
+using Sheenam2.API.Models.Foundation.Guests.Exceptions;
+using Sheenam2.API.Models.Foundation.Guests;
 using Sheenam2.API.Models.Foundation.Hosts;
 using Sheenam2.API.Models.Foundation.Hosts.Exceptions;
 using Sheenam2.API.Services.Foundations.Hosts;
@@ -48,57 +50,58 @@ namespace Sheenam2.Api.Tests.Unit.Services.Foundations.Hosts
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public async Task ShouldThrowValidationExseptionOnAddIfHostIsInvalidAndLogItAsync(
-            string invalidText)
+        public async Task ShouldThrowExceptionOnAddIfHostIsInvalidAndLogItAsync(string invalidData)
         {
-            //given
-            var invalidHost = new Host
+            // given
+            Host invalidHost = new Host()
             {
-                FistName=invalidText
+                LastName = invalidData
             };
+
             var invalidHostException = new InvalidHostException();
 
             invalidHostException.AddData(
-                key: nameof(Host.Id),
+                key: nameof(invalidHost.Id), 
                 values: "Id is required");
 
             invalidHostException.AddData(
-                key: nameof(Host.FistName),
+                key: nameof(invalidHost.FistName), 
                 values: "Text is required");
 
             invalidHostException.AddData(
-                key: nameof(Host.LastName),
+                key: nameof(invalidHost.LastName), 
                 values: "Text is required");
 
             invalidHostException.AddData(
-                key: nameof(Host.DateOfBirth),
+                key: nameof(invalidHost.DateOfBirth), 
                 values: "Date is required");
 
             invalidHostException.AddData(
-                key: nameof(Host.Email),
+                key: nameof(invalidHost.Email), 
                 values: "Text is required");
 
-            var expectedHostValidationException =
+            var hostValidationException =
                 new HostValidationException1(invalidHostException);
-            //when
-            ValueTask<Host> addHostTask =
+
+            // when
+            ValueTask<Host> AddHostTask =
                 this.hostService.AddHostAsync(invalidHost);
 
-            //then
+            // then
             await Assert.ThrowsAsync<HostValidationException1>(() =>
-                addHostTask.AsTask());
+                AddHostTask.AsTask());
 
             this.loggingBrokermock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
-                    expectedHostValidationException))),
-                        Times.Once);
+                    hostValidationException))),
+                     Times.Once);
 
             this.storageBrokermock.Verify(broker =>
                 broker.InsertHostAsync(It.IsAny<Host>()),
                     Times.Never);
 
-            this.loggingBrokermock.VerifyNoOtherCalls();
             this.storageBrokermock.VerifyNoOtherCalls();
+            this.loggingBrokermock.VerifyNoOtherCalls();
         }
     }
 }
